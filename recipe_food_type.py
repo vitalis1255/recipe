@@ -2,7 +2,6 @@ import os
 import subprocess
 from datetime import datetime
 from tabulate import tabulate
-import streamlit as st
 
 """
 RecipenManager: Build a console-based recipe manager. Users should be able to add recipes, view recipes, search for recipes by ingredients, and perform other recipe-related operations
@@ -16,7 +15,7 @@ def recipe_Task():
   Tasks to perform
 
   """
-  print("===TASKS TO PERFORM===")
+  print("Action: TASKS TO PERFORM...")
   print("1. Add a recipe")
   print("2. View all recipes")
   print("3. Search for a recipe by ingredients")
@@ -49,11 +48,12 @@ def add_a_recipe():
     add_food["name"] = food_type
     add_food["ingredients"] = input("Enter ingredients separated by a comma: ").strip().split(",")
     add_food["cooking_step"] = input("Enter steps in cooking the food separated by a comma: ").strip().split(",")
-    add_food["date"] = datetime.now().date()
+    add_food["date"] = datetime.today().strftime("%Y-%m-%d")
 
       
     recipe.append(add_food)
     print("Recipe Added Successfully")
+    return recipe
 
 
 def check_food_exist(name):
@@ -118,7 +118,7 @@ def search_for_a_recipe_ingredients():
       print("Recipe Type Found is: ",item["name"])
       break
   else:
-    print("No ingredient found in the recipe list")
+    print("No recipe found in the list")
 
 
 
@@ -165,7 +165,7 @@ def Update_a_single_recipe_type():
         item["name"] = input("Enter new recipe: ").strip().lower()
         item["ingredients"] = input("Enter new ingredients: ").strip().split(",")
         item["cooking_step"] = input("Enter new cooking step: ").strip().split(",")
-        item["date"] = datetime.now().date()
+        item["date"] = datetime.today().strftime("%Y-%m-%d")
 
         print("Recipe updated successfully")
         break
@@ -226,14 +226,15 @@ def main():
     elif num == "7":
       exit_action()
       clear_Console()
-      input("Press enter to continue...")
+      input("Please Enter a num greater than 7 to terminate tasks...")
 
     else:
       print("Task terminating....")
-      print("Thanks for a well job done!!!")
+      print("Thanks for a job well done!!!")
+      print("Please come back later to perform another tasks......")
       break
       
 
-#main duard or the execution guard
+#The Execution Guard
 if __name__ == "__main__":
   main()

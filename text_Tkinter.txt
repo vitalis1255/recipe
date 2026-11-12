@@ -1,0 +1,577 @@
+INTRODUCTION TO TKINTER:This is used to develope a responsive and a powerful GIU interface.
+
+INTRODUCING TKINTER AND TK: TK widget library comes from Tool Commnad Language(Tcl) programming language. Tkinter is a python interface to the TK GUI library.
+
+
+BELOW IS ABOUT DATA ANALYSIS FOR AN APPLICATION DESIGN:
+1. HOW TO DEVELOPE SOFTWARE APPLICATIONS:
+There are three phases in developing software applications:
+a. Understanding a problem
+b. Designing a solution
+c. Implementing the solution
+
+2. A PROBLEM AT ABQ AGRILABS:
+Congratulations! Your Python skills have landed you a great data analyst job
+at ABQ AgriLabs. So far, your job is fairly simple: collating and doing
+simple data analysis on the CSV files sent to you daily from the lab's data
+entry staff. There is a problem, though. You've noted with frustration that the quality of
+the CSV files from the lab is sadly inconsistent. Data is missing, typos
+abound, and often the files have to be re-entered in a time-consuming
+process. The lab director has noticed this as well and, knowing that you are a
+skilled Python programmer, she thinks you might be able to help. You've been enlisted to program a solution that will allow the data entry staff
+to enter lab data into a CSV file with fewer mistakes. Your application needs
+to be simple and allow as little room for error as possible.
+
+
+3. ASSESSING THE PROBLEM:
+Spreadsheets are often a first stop for computer users who need to keep track
+of data. Their table-like layouts and computational features seem to make
+them ideal for the task. However, as a set of data grows and is added to by
+multiple users, the shortcomings of spreadsheets become apparent: they don't
+enforce data integrity, their table-like layout can be visually confusing when
+dealing with long rows of sparse or ambiguous data, and users can easily
+delete or overwrite data if they aren't being careful.
+To improve this situation, you propose to implement a simple GUI data entry
+form that appends data to a CSV file in the format we need. Forms can help
+to improve data integrity in the several ways:
+a. Allowing only the correct type of data to be entered (for example, only
+   allowing numerals in a number field)
+b. Limiting choices to only valid options
+c. Auto-filling information like current dates, times, and so on
+d. Verifying that entered data is within expected ranges or matches
+   expected patterns
+e. Ensuring that all data has been filled in.
+
+By implementing such a form, we can greatly reduce the number of errors
+being entered by the data entry staff.
+
+
+4. GATHERING THE INFORMATION ABOUT THE PROBLEM:
+To build the data entry form application, you need to gather details about
+what it needs to accomplish. Fortunately, you already know the output part of
+the equation: you need a CSV file containing data about the plants growing in
+the plots of each laboratory and the environmental conditions at each plot.
+You work with these files every day, so you're pretty familiar with the field
+layout.
+
+However, you don't know everything about the data or the process of entering
+it; you'll need to talk to the other staff involved to find out more information.
+
+First, you'll need to find out more detail about the data being recorded. This
+isn't always as easy as it sounds. Software needs absolute, black-and-white
+rules when dealing with data; people, on the other hand, tend to think in
+generalities about their data, and they often don't consider the exact details of
+limits or edge cases without some prompting.
+
+As a programmer, it's your job to come up with questions that will bring out
+the information you need.
+
+You decide you should start with the lab technicians and learn more about the
+data they're collecting. You come up with the following questions:
+a. What values are acceptable for each field? Are any fields constrained to
+a set of values?
+b. What units are represented by each of the numeric fields?
+c. Are numeric fields truly number-only fields? Would they ever need
+letters or symbols?
+d. What range of numbers is acceptable for each numeric field?
+e. How do you record data and how long does it take?
+
+Data isn't the only consideration. If we're making a program to help reduce
+user error, we also have to understand those users and how they work. In the
+case of this application, our users will be the data entry staff. We need to ask
+them questions about their needs and workflow to understand how to create
+an application that works well for them.
+
+We come up with the following list of questions:
+In what format do you get the data you're entering?
+When is the data received and how soon is it entered? What's the latest it
+might be entered?
+Are there fields that could be automatically populated? Should users be
+able to override the auto values?
+What's the overall technical ability of the users?
+What do you like about the current solution? What do you dislike?
+Do users have visual or manual impairments that should be
+accommodated?
+
+Finally, we need to understand the technology involved with operating our
+application—the computers, networks, servers, and platforms being used to
+accomplish the task.
+You decide to add the following questions, which you'll assess yourself when
+you meet with the data entry staff:
+a. What kind of computer does data entry use?
+b. What platform does it run?
+c. How fast or powerful is it?
+d. Is Python available on these systems?
+e. Which Python libraries are available?
+
+
+5. WHAT YOU FOUND OUT:
+You start by writing down the following basics about ABQ that you know:
+a. Your ABQ facility has five greenhouses, each operating with a different
+climate, marked A, B, C, D, and E
+b. Each greenhouse has 20 plots (labeled 1 through 20)
+c. There are currently four seed samples, each coded with a six-character
+label
+d. Each plot has 20 seeds of a given sample planted in it, as well as its own
+environmental sensor unit.
+
+
+6. INFORMATION ABOUT THE DATA BEING COLLECTED:
+Your talk with the lab technicians revealed a lot about the data. Four times a
+day, at 8:00, 12:00, 16:00, and 20:00, each technician checks the plots in one
+or two labs. They use a paper form to record values at each plot, recording all
+values to two decimal places. This usually takes 30 to 40 minutes per lab, and
+the whole process typically takes 90 minutes. 
+Each plot has an environmental sensor that detects the light, temperature, and
+humidity at the plot. Unfortunately, these devices are prone to failure,
+indicated by an Equipment Fault light on the unit. Technicians record if this light
+is lit, since it invalidates the environmental data.
+
+Finally, the technicians tell you about the units and acceptable ranges for the
+fields, which you record in the following chart:
+
+
+7. INFORMATION ABOUT THE USERS OF THE APPLICATION:
+Your session with the data entry staff yielded good information about their
+workflow, requirements, and technology.
+The lab technicians drop off their paper forms as they're completed. The data
+is typically entered right away and usually on the same day as it's handed in.
+The technicians are currently using LibreOffice on a Debian Linux
+workstation to enter the data. Using copy and paste, they can bulk-fill fields
+with repeated data like date, time, and technician. The autocompletion feature
+of LibreOffice is often helpful in text fields, but sometimes causes accidental
+data errors in the number fields.
+The workstation being used is several years old, but performs adequately.
+You get a chance to look at it and find that Python and Tkinter are already
+installed.There are four data entry clerks in total, but only one working at any one
+time; while interviewing the clerks, you learn that one has red-green color
+blindness, and another has trouble using a mouse due to RSI issues. All are
+reasonably computer literate.
+
+
+8. DOCUMENTING SPECIFICATION REQUIREMENTS:
+Now that you've assembled your data about the application, it's time to write
+up a specification. Software specifications can range from very formal,
+contractual documents that include time estimates and deadlines, to a simple
+set of descriptions of what the programmer intends to build. The purpose of
+the specification is to give everyone involved in the project a point of
+reference for what the developer will create. It spells out the problem to be
+solved, the functionality required, and the scope of what the program should
+and shouldn't do.
+Your scenario is rather informal and your application is simple, so you do not
+need a detailed formal specification in this case. However, a basic write-up of
+what you know will make sure that you, your boss, and the users are all on
+the same page.
+
+
+CONTENTS OF A SIMPLE SPECIFICATION:
+We'll start our specification with the following outline of the items we need
+to write:
+1. Description: This is one or two sentences that describe the primary
+purpose, function, and goals of the application.  Think of it as the
+program's mission statement.
+2. Functionality required: This section is a list of specific things the
+program needs to be able to do to be minimally functional. It can include
+both hard requirements, such as detailed output and input formats, and
+soft requirements—goals that are not quantifiably attainable, but that the
+program should strive toward (for example, "reduce user errors as much
+as possible").
+3. Functionality not required: This section is a list of things the program
+does not need to do; it exists to clarify the scope of the software and
+make sure nobody expects unreasonable things from the application.
+Limitations: This is a list of constraints under which the program must
+operate, both technological and human.
+4. Data dictionary: This is a detailed list of the data fields the application
+will deal with and their parameters. These can get quite lengthy but are a
+critical reference as the application expands and the data gets utilized in
+other contexts.
+
+
+
+WRITING THE ABQ DATA ENTRY PROGRAM SPECIFICATION:
+You could write a specification in your favorite word processor, but ideally
+the specification is a part of your code; it will need to be kept with the code
+and synchronized with any changes to the application. For that reason, we're
+going to write it in our text editor using the reStructuredText markup
+language. For Python documentation, reStructuredText, or reST, is the  official markup language.
+The Python community encourages the use of reST to document Python projects, and
+many packaging and publication tools used in the Python community expect the reST
+format. We'll cover reST in more depth in Chapter 5, Planning for the Expansion of Our
+Application, but you can find the official documentation at http://docutils.sourceforge.net/rst.ht
+ml.
+
+Let's begin writing our specification, one section at a time as follows:
+1. Begin the specification with the name of the application and a short
+description. This should contain a summary of the program's purpose, as
+follows:
+  ======================================
+   ABQ Data Entry Program specification
+  ======================================
+   Description
+  ----------
+ The program is being created to minimize data entry errors for laboratory 
+
+ 2. Now, let's list the requirements. Remember that hard requirements are
+objectively attainable goals—input and output requirements,
+calculations that must be done, features that must be present, whereas
+our soft requirements are subjective or best-effort goals. Look through
+your findings from the last section, and consider which needs are
+which. You should come up with something like the following:
+
+Functionality Required
+----------------------
+The program must:
+* allow all relevant, valid data to be entered, as per the field chart
+* append entered data to a CSV file- The CSV file must have a filename
+of abq_data_record_CURRENTDATE.csv, where 
+CURRENTDATE is the date of the checks in 
+ISO format (Year-month-day)- The CSV file must have all the fields as per the chart
+* enforce correct datatypes per field
+The program should try, whenever possible, to:
+* enforce reasonable limits on data entered
+* Auto-fill data
+* Suggest likely correct values
+* Provide a smooth and efficient workflow
+
+
+3. Next, we'll reign in the scope of the program with the Functionality Not
+Required section. Remember that this is only an entry form for now;
+editing or deletion will be handled in the spreadsheet application. We'll
+clarify this as follows:
+
+Functionality Not Required
+--------------------------
+The program does not need to:
+* Allow editing of data. This can be done in LibreOffice if necessary.
+* Allow deletion of data.
+
+
+4. For the Limitations section, remember that we have some users with
+physical constraints, as well has hardware and operating system
+constraints. Add it as follows:
+
+Limitations
+----------
+The program must:
+* Be efficiently operable by keyboard-only users.
+* Be accessible to color blind users.
+* Run on Debian Linux.
+* Run acceptably on a low-end PC.
+
+
+5. Finally, the data dictionary, this is essentially the table we've made
+previously, but we'll break out range, data types, and units for quick
+reference, as follows:
++------------+----------+------+--------------+---------------------+
+|  Field       Datatype | Units|   Range          Descripton           
+|
++============+==========+======+==============+=====================+
+|Date        |Date      |      |              |Date of record       |
++------------+----------+------+--------------+---------------------+
+|Time        |Time      |      |8, 12, 16, 20 |Time period          |
++------------+----------+------+--------------+---------------------+
+|Lab         |String    |      | A - E        |Lab ID               |
++------------+----------+------+--------------+---------------------+
+|Technician  |String    |      |              |Technician name      |
++------------+----------+------+--------------+---------------------+
+|Plot        |Int       |      | 1 - 20       |Plot ID              |
++------------+----------+------+--------------+---------------------+
+|Seed        |String    |      |              |Seed sample ID       |
+|sample      |          |      |              |                     |
++------------+----------+------+--------------+---------------------+
+|Fault       |Bool      |      |              |Fault on sensor      |
++------------+----------+------+--------------+---------------------+
+|Light       |Decimal   |klx   | 0 - 100      |Light at plot        |
++------------+----------+------+--------------+---------------------+
+|Humidity    |Decimal   |g/m³  | 0.5 - 52.0   |Abs humidity at plot |
++------------+----------+------+--------------+---------------------+
+|Temperature |Decimal   |°C    | 4 - 40       |Temperature at plot  |
++------------+----------+------+--------------+---------------------+
+|Blossoms    |Int       |      | 0 - 1000     |# blossoms in plot   |
++------------+----------+------+--------------+---------------------+
+|Fruit       |Int       |      | 0 - 1000     |# fruits in plot     |
++------------+----------+------+--------------+---------------------+
+|Plants      |Int       |      | 0 - 20       |# plants in plot     |
++------------+----------+------+--------------+---------------------+
+|Max height  |Decimal   |cm    | 0 - 1000     |Ht of tallest plant  |
++------------+----------+------+--------------+---------------------+
+|Min height  |Decimal   |cm    | 0 - 1000     |Ht of shortest plant |
++------------+----------+------+--------------+---------------------+
+|Median      |Decimal   |cm    | 0 - 1000     |Median ht of plants  |
+|height      |          |      |              |                     |
++------------+----------+------+--------------+---------------------+
+|Notes       |String    |      |              |Miscellaneous notes  |
++------------+----------+------+--------------+---------------------+
+
+
+
+9. DESIGNING THE APPLICATION:
+With our specification in hand and our requirements clear, it's time to start
+designing our solution. We'll start with the form GUI component itself.
+We're going to create a basic design for our form in the following three steps:
+1. Determine the appropriate input widget for each data field
+2. Group together related items to create a sense of organization
+3. Layout our widgets in their groups on a form sheet
+
+
+10. EXPLORING TKINTER INPUT WIDGETS:
+Like all toolkits, Tkinter offers a variety of input widgets for different kinds of
+data. However, ttk offers additional widget types and enhances some (but not
+all!) of Tkinter's native widgets. The following table offers advice on which
+widgets are most appropriate for different kinds of data entry:
+Widget Description Used for
+ttk.Entry Basic text entry Single-line strings
+ttk.Spinbox
+Text entry with
+increment/decrement
+arrows
+Numbers
+Tkinter.Listbox Box with a list of choices Choice between several
+values
+Tkinter.OptionMenu
+Drop-down list with
+choices
+Choice between several
+values
+ttk.Combobox
+Drop-down list with
+optional text entry
+Choice between several
+values plus text entry
+ttk.Checkbutton Checkbox with label Boolean values
+ttk.Radiobutton
+Like checkbox, but only
+one of a set can be selected
+Choice between small
+set of values
+Tkiner.Text Multiline text entry box Long, multiline strings
+Tkinter.Scale Mouse-operated slider Bounded number data
+
+Let's consider which of these widgets are appropriate for the data that needs
+to be entered:
+There are several Decimal fields, many with clear boundary ranges with
+Min height, Max height, Median height, Humidity, Temperature, and Light. You
+
+
+11. GROUPING OUR FILEDS:
+Humans tend to get confused when staring at a huge wall of inputs in no
+particular order. You can do your users a big favor by breaking up the input
+form into sets of related fields.
+After looking over your fields, you identify the following related groups:
+The Date, Lab, Plot, Seed Sample, Technician, and Time fields are identifying
+data or metadata about the record itself. You could group these together
+under a heading like Record information.
+The Blossoms, Fruit, three Height fields, and Plants fields are all
+measurements that have to do with the plants in the Plot field. You could
+group these together as Plant data.
+The Humidity, Light, Temperature, and Equipment Fault fields, are all
+information from the environmental sensor. You could group these as
+Environmental data.
+The Notes field could be related to anything, so it's in a category of its
+own.
+
+To group the preceding fields in Tkinter, we could just insert labels between
+each set of fields, but it's worth exploring the various options we have for
+grouping widgets together:
+Widget               Description
+ttk.LabelFrame       Frame with label text and an optional border
+ttk.NoteBook          Tabbed widget that allows multiple pages
+Tkinter.PanedWindow   Allows for multiple re-sizable frames in horizontal or vertical arrangement
+
+
+12. LAYING OUT THE FORM:
+NOTE: When designing a new application to replace some part of an existing workflow, it's
+important to learn and respect that workflow. While we'll have to adjust that workflow to
+actually improve it, we don't want to make another part of someone's job harder just to
+make the part we're working on simpler.
+
+One last consideration in our design is where to place field labels in relation
+to the fields. There is a good deal of debate in the UI design community over
+the best placement of labels, but the consensus is that one of the following
+two options is best:
+Labels above fields
+Labels to the left of fields
+
+You might try sketching out both to see which you prefer, but for this
+application labels above fields will probably work better for the following
+reasons:
+Since both fields and labels are rectangular in shape, our form will be
+more compact by stacking them
+It's a lot easier to make the layout work, since we don't have to find a
+label width that works for all the labels without distancing them too far
+from the fields
+The one exception is the check button field; check buttons are typically
+labeled to the right of the widget.
+Take a moment to make a mockup of your form, using paper and pencil, or a
+drawing program. 
+
+
+13. LAYING OUT THE APPLICATION:
+With your form designed, it's time to consider the rest of the application's
+GUI:
+You'll need a save button to trigger storage of the entered data
+Sometimes, we might need to provide status information to the user;
+applications typically have a status bar that displays these kinds of
+messages
+Finally, it might be good to have a header indicating what the form is
+
+
+Keep stakeholders involved as much as possible in your application design process. This
+reduces the possibility that you'll have to go back and redesign your application later.
+
+
+SUMMARY:
+In this chapter, you worked through the first two phases of application
+development: understanding the problem and designing a solution. You
+learned how to develop an application specification by interviewing users and
+examining the data and requirements, creating an optimal form layout for
+your users, and learned which widgets are available in Tkinter for dealing
+with different kinds of input data. Most importantly, you learned that
+developing an application doesn't begin with code, but with research and
+planning.
+In the next chapter, you'll create a basic implementation of your designs with
+Tkinter and Python. We will get familiar with the Tkinter widgets required to
+create our form, build the form, and place the form within the application.
+We'll also learn how to make our form trigger callback actions and discover
+how to structure our code to ensure efficiency and consistency.
+
+
+
+CREATING BASIC FORMS WITH TKINTER AND TTK WIDGETS:
+In this chapter, you'll cover the following topics:
+1. Evaluating your technology choices in light of the design
+2. Getting to know our selected Tkinter and ttk widgets
+3. Implementing and testing the form and application
+
+
+14. EVALUATING OUR TECHNOLOGY CHOICES:
+Our first implementation of the design will be a very simple application that
+delivers the core functionality of the specification and little else. This is
+known as a minimum viable product or MVP. Once we've established an
+MVP, we'll have a better understanding of how to develop it into a final
+product.
+   Evaluating our technology choices as follows:
+   1. CHOOSING A TECHNOLOGY: Naturally, we are going build this form with python and Tkinter. It is very vital to ask if this Tkinter will be good for the application.
+   The following things need to be considered when choosing a GUI tookit for implementing a form like this form:
+   a. Your current expertise and knowledge
+   b. The target platforms
+   c. Application functionality
+
+   Python has other options for GUI development, including PyQT, Kivy, and wxPython.
+These have different strengths and weaknesses compared to Tkinter, but if you find
+Tkinter doesn't fit well for a project, one of these might be a better option.
+
+
+15. EXPLORING TKINTER WIDGETS:
+Some of our widgets are in Tkinter, others are in the ttk themed widget set, and a few are
+in both libraries. We prefer the ttk versions wherever they exist, since they look better
+across platforms. Pay careful attention to the library from which we import each widget.
+
+
+16. THE ENTRY WIDGET:
+The ttk.entry widget is a basic, and a one-line character entry. syntax of creating entry widget is as follows:
+my_entry = ttk.entry(parent, textvariable=my_text_var)
+parent: This argument set the parent widget for the entry widget.
+textvariable: This is a Tkinter stringVar() whose value will be bound to the entry widget.
+shwo: This argument determines what will be displayed when you type into the box such as password or normal texts.
+ENTRY: This supports additional formatting and styling options. Among all the preceding arguments, use of the textvariable argument is optional; without it, we can extract the value in the Entry widget, using its get() method. 
+
+
+ADVANTAGES OF BINDING A VARIABLE TO OUR INPUT WIDGETS:
+a. First, we don't have to keep or pass around a reference to the widget itself. This will make it easier to reorganize our software into separate modules in later chapters. Also, changes to the value of the input are automatically propagated to the variable and vice versa meaning that when a user types a new value into the text box on a screen, the computer program automatically updates the stored data variable. If the variable changes in the code, the text box updates too.
+
+
+17. THE SPINBOX WIDGET:
+syntax for creating spinbox:
+my_spinbox = tk.spinbox(
+   parent,
+   from_=0.5,
+   to=52.0,
+   increment=.01,
+   textvariable=my_double_var
+)
+from: This argument determines the lowest decrement a value can reach. The underscore infront of the from is used to avoid conflict with python because from is a python keyword.
+to: This argument determines the highest value the arrow can reach.
+increment: This argument rep the value at which the arrow can increment or decrement.
+values: This argument takes a list of string or number values that can be incremented through.
+NB: Both 'from' and 'to' are needed. If you use either, error occurs.
+NB: The spinbox is not only for numbers, it can take a list of strings which can be selected with an arrow buttons.
+Because spinbox can be used for strings or numbers, the textvariable argument takes the StringVar, IntVar, or DoubleVar data types.
+Be aware that none of these parameters actually limit what can be typed into a Spinbox widget. It's nothing more than an Entry widget with buttons tacked on, and you can type not only values outside the valid range, but letters and symbols as well. Doing so can cause an exception if you've bound the widget to a non-string variable. In Chapter 4,
+Reducing User Error with Validation and Automation, we'll learn how to make the Spinbox limit entry to valid characters only.
+
+
+THE COMBOBOX WIDGET:
+This argument is an entry widget that adds a drop down select menu. To have the drop down menu, values argument with a list of strings will be passed which a user can select. The combobox widget comes from ttk.
+syntax:
+my_combobox = ttk.combobx (
+   parent,
+   textvariable=my_string_var,
+   values=["option1","option2","option3"]
+)
+If you're used to HTML <SELECT> widgets or drop-down widgets in other toolkits, the
+ttk.Combobox widget may seem strange to you. It's really an Entry widget with a drop-down
+menu to select some preset strings. Just like the Spinbox widget, it doesn't limit the values
+that can be typed in. 
+
+
+THE CHECKBUTTON WIDGET:
+The ttk.Checkbutton widget is a labeled checkbox for entering boolean data.
+text: This argument sets the label for the widget.
+variable: This argument is BooleanVar, to which the checked status is bound.
+syntax:
+my_checkbutton = ttk.checkbutton(
+   parent,
+   text="Check this button to true",
+   variable=my_boolean_var
+)
+
+
+THE TEXT WIDGET:
+This is multi-line entry widget. Text widget allows to implement the following:
+a. multy-colored texts. b. hyberlink-style clickable texts etc. It can not be bound to Tkinter strinVar(). Setting or retrieving its contents needs to be done via get(), insert(), or delete(). whenever you are reading or modifying with these methods i.e get(),insert(), or delete(), pass one or two index values to select the character or range of characters you are working on. These index values are strings that can take the following formats:
+a. The line number and character number separated by a dot. Lines are numbered from 1 while charaters are numbered from 0.
+b. The end string or Tkinter constant END, indicating the end of the field.
+c. A numerical index plus one of the words linestart, lineend, wordstart, and wordend, indicating the start or end of the line or word relative to the numerical index. For example, 6.2 wordstart would be the start of the word containing the third character on line 6; 2.0 lineend would be the end of line 2.
+d. Any of the preceding, a plus or minus operator, and a number of
+characters or lines. For example, 2.5 wordend - 1 chars would be the
+character before the end of the word containing the sixth character on
+line 2.
+syntax:
+# create the widget.  Make sure to save a reference.
+my-text = tk.text(parent)
+
+# insert a string at the beginning
+my_text.insert('1.0',"I love Tkinter")
+
+my_text.insert('1.2',"REALLY")
+
+#get the whole string
+my_text.get('1.0',tk.END)
+
+#delete the last character
+# Note that there is always a newline character
+# at the end of the input, so we backup 2 chars.
+my_text.delete('end - 2 chars')
+
+
+
+THE BUTTON WIDGET:
+The button widget comes from ttk.button widget. This widget uses the text and textvariable configuration options to control the label on the button. It uses a command to specify a python function that triggers when the button is clicked.
+HOW TO USE BUTTON:
+btn = tk.stringVar()# we want to save a string value.
+def sweetText():
+  if btn.get() == "Hi":
+     btn.set = ("There")
+   else:
+     btn.set = "Hi"
+
+my_button = ttk.button(parent,textvariable=btn,command=sweetText)
+
+
+
+THE LabelFrame WIDGET:
+The LabelFrame widget comes from ttk.LabelFrame, which is used to group our related fileds in this design. It takes text argument and positioned it in the top-left corner of the frame.
+
+
+SAVING SOME TIME WITH A LABELINPUT CLASS:
