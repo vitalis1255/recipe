@@ -115,11 +115,11 @@ def search_for_a_recipe_ingredients():
   the ingredients used. View all recipes incase you
   have forgotten.
   """
-  
+
   ingredient = input("Enter ingredients used: ").strip().split(",")
   for item in recipe:
     if item["ingredients"] == ingredient:
-      print(f"Recipe Type Found is: ",({item["name"].upper()}))
+      print(f"Recipe Type Found is ({item["name"].upper()})!")
       break
   else:
     print("No recipe found in the list")
