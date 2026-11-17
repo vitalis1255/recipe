@@ -122,7 +122,7 @@ def search_for_a_recipe_ingredients():
       print(f"Recipe Type Found is ({item["name"].upper()})!")
       break
   else:
-    print("No recipe found in the list")
+    print("No recipe type found!")
 
 
 
