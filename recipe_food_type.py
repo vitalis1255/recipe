@@ -111,7 +111,9 @@ def view_all_recipes():
 def search_for_a_recipe_ingredients():
   """
   Ingredients used to cook the recipe, are used to
-  search for a recipe type
+  search for a recipe type. Make sure you remember
+  the ingredients used. View all recipes incase you
+  have forgotten.
   """
   ingredient = input("Enter ingredients used: ").strip().split(",")
   for item in recipe:
