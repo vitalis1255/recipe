@@ -110,9 +110,10 @@ def view_all_recipes():
 
 def search_for_a_recipe_ingredients():
   """
-  Use an Ingredient to search for a recipe type
+  Ingredients used to cook the recipe, are used to
+  search for a recipe type
   """
-  ingredient = input("Enter ingredient name: ").strip().split()
+  ingredient = input("Enter ingredients used: ").strip().split(",")
   for item in recipe:
     if item["ingredients"] == ingredient:
       print("Recipe Type Found is: ",item["name"])
